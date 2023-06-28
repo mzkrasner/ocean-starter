@@ -1,11 +1,19 @@
 ## Getting Started
 
-You will need to create an admin_seed.txt file and composedb.config.json file and generate corresponding
-credentials to place in those files. For reference, check out how to [Set Up Your Environment](https://composedb.js.org/docs/0.4.x/set-up-your-environment)
+Clone this repository
 
-You will also need to create a .env file in the root of your directory and place your seed phrase there.
+```bash
+git clone https://github.com/mzkrasner/ocean-starter
+```
+
+You will first need to create an admin_seed.txt file and generate a seed key from Ceramic to store there.
+Next, generate an admin-did for your composedb.config.json file.
+For reference, check out how to [Set Up Your Environment](https://composedb.js.org/docs/0.4.x/set-up-your-environment)
+
+You will also need to create a .env file in the root of your directory and place your seed key there as well.
 
 First, install dependencies:
+
 ```bash
 npm install
 ```

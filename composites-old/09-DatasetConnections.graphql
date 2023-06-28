@@ -1,0 +1,15 @@
+type Field @loadModel(id: "$FIELD_ID") {
+  id: ID!
+}
+type Question @loadModel(id: "$QUESTION_ID") {
+  id: ID!
+}
+type Record @loadModel(id: "$RECORD_ID") {
+  id: ID!
+}
+
+type Dataset @loadModel(id: "$DATASET_ID") {
+  fields: [Field] @relationFrom(model: "Field", property: "dataset_id")
+  questions: [Question] @relationFrom(model: "Question", property: "dataset_id")
+  records: [Record] @relationFrom(model: "Record", property: "dataset_id")
+}

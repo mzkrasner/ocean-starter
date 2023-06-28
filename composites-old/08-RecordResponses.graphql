@@ -1,0 +1,7 @@
+type Response @loadModel(id: "$RESPONSE_ID") {
+  id: ID!
+}
+
+type Record @loadModel(id: "$RECORD_ID") {
+  responses: [Response] @relationFrom(model: "Response", property: "record_id")
+}

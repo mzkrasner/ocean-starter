@@ -1,0 +1,7 @@
+type Dataset @loadModel(id: "$DATASET_ID") {
+  id: ID!
+}
+
+type Workspace @loadModel(id: "$WORKSPACE_ID") {
+  datasets: [Dataset] @relationFrom(model: "Dataset", property: "workspaceID")
+}

@@ -1,0 +1,10 @@
+type Workspace @createModel(accountRelation: LIST, description: "Basic model representing a workspace for LLM fine-tuning") {
+  author: DID! @documentAccount
+  argillaID: String @string(maxLength: 200)
+  name: String! @string(minLength: 3, maxLength: 200)
+  inserted_at: DateTime!
+  updated_at: DateTime!
+  users: [String] @list(maxLength: 100000) @string(maxLength: 200)
+  viewers: [AccountID] @list(maxLength: 100000)
+}
+

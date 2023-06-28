@@ -1,0 +1,21 @@
+type Dataset @loadModel(id: "$DATASET_ID") {
+  id: ID!
+}
+
+type TextToTextRecord @createModel(accountRelation: LIST, description: "Basic model representing a text2text record for LLM fine-tuning") {
+  author: DID! @documentAccount
+  text: String! @string(maxLength: 1000000)
+  prediction: String @string(maxLength: 1000000)
+  prediction_agent: String @string(maxLength: 1000000)
+  annotation: String @string(maxLength: 1000000)
+  annotation_agent: String @string(maxLength: 1000000)
+  vectors: String @string(maxLength: 1000000)
+  argillaId: String @string(maxLength: 1000000)
+  metadata: String @string(maxLength: 1000000)
+  status: String @string(maxLength: 1000000)
+  event_timestamp: String @string(maxLength: 1000000)
+  metrics: String @string(maxLength: 1000000)
+  search_keywords: String @string(maxLength: 1000000)
+  datasetId: StreamID! @documentReference(model: "Dataset")
+  dataset: Dataset! @relationDocument(property: "datasetId")
+}

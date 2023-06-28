@@ -1,0 +1,12 @@
+type Dataset @loadModel(id: "$DATASET_ID") {
+  id: ID!
+}
+
+type FeedbackRecord @createModel(accountRelation: LIST, description: "Basic model representing a feedback record for LLM fine-tuning") {
+  author: DID! @documentAccount
+  fields: String! @string(maxLength: 1000000)
+  questions: String @string(maxLength: 1000000)
+  guidelines: String @string(maxLength: 1000000)
+  datasetId: StreamID! @documentReference(model: "Dataset")
+  dataset: Dataset! @relationDocument(property: "datasetId")
+}

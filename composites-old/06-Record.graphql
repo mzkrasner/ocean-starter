@@ -1,0 +1,16 @@
+type Dataset @loadModel(id: "$DATASET_ID") {
+  id: ID!
+}
+
+type Record @createModel(accountRelation: LIST, description: "Basic model representing a record for LLM fine-tuning") {
+  author: DID! @documentAccount
+  argillaID: String @string(maxLength: 200)
+  fields: String! @string(maxLength: 100000)
+  metadata: String @string(maxLength: 100000)
+  external_id: String @string(maxLength: 200)
+  argillaDataset_id: String @string(maxLength: 200)
+  inserted_at: DateTime!
+  updated_at: DateTime!
+  dataset_id: StreamID! @documentReference(model: "Dataset")
+  dataset: Dataset! @relationDocument(property: "dataset_id")
+}

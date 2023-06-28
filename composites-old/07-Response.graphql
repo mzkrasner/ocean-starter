@@ -1,0 +1,22 @@
+type Record @loadModel(id: "$RECORD_ID") {
+  id: ID!
+}
+
+type Response @createModel(accountRelation: LIST, description: "Basic model representing a response for LLM fine-tuning") {
+  author: DID! @documentAccount
+  argillaID: String @string(maxLength: 200)
+  values: String  @string(maxLength: 100000)
+  status: ResponseStatus!
+  record_id: StreamID! @documentReference(model: "Record")
+  record: Record! @relationDocument(property: "record_id")
+  argillaUser_id: String @string(maxLength: 200)
+  inserted_at: DateTime!
+  updated_at: DateTime!
+}
+
+enum ResponseStatus {
+  text
+  rating
+  label_selection
+  multi_label_selection
+}

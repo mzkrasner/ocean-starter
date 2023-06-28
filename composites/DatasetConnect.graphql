@@ -1,0 +1,22 @@
+type FeedbackRecord @loadModel(id: "$FEEDBACK_ID") {
+  id: ID!
+}
+
+type TextToTextRecord @loadModel(id: "$TEXTTOTEXT_ID") {
+  id: ID!
+}
+
+type TextClassificationRecord @loadModel(id: "$TEXTCLASSIFICATION_ID") {
+  id: ID!
+}
+
+type TokenClassificationRecord @loadModel(id: "$TOKEN_ID") {
+  id: ID!
+}
+
+type Dataset @loadModel(id: "$DATASET_ID") {
+  feedbackRecords: [FeedbackRecord] @relationFrom(model: "FeedbackRecord", property: "datasetId")
+  TextToTextRecords: [TextToTextRecord] @relationFrom(model: "TextToTextRecord", property: "datasetId")
+  textClassificationRecords: [TextClassificationRecord] @relationFrom(model: "TextClassificationRecord", property: "datasetId")
+  tokenClassificationRecords: [TokenClassificationRecord] @relationFrom(model: "TokenClassificationRecord", property: "datasetId")
+}

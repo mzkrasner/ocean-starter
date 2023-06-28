@@ -1,0 +1,62 @@
+type Dataset @loadModel(id: "$DATASET_ID") {
+  id: ID!
+}
+
+type Question @createModel(accountRelation: LIST, description: "Basic model representing a question for LLM fine-tuning") {
+  author: DID! @documentAccount
+  argillaID: String @string(maxLength: 200)
+  name: String! @string(minLength: 1, maxLength: 200)
+  title: String! @string(minLength: 1, maxLength: 500)
+  description: String @string(minLength: 1, maxLength: 1000)
+  required: Boolean!
+  settings: QuestionSettings!
+  argillaDataset_id: String @string(maxLength: 200)
+  inserted_at: DateTime!
+  updated_at: DateTime!
+  dataset_id: StreamID! @documentReference(model: "Dataset")
+  dataset: Dataset! @relationDocument(property: "dataset_id")
+}
+
+type QuestionSettings {
+  TextQuestionSettings: TextQuestionSettings!
+  RatingQuestionSettings: RatingQuestionSettings!
+  LabelSelectionQuestionSettings: LabelSelectionQuestionSettings!
+  MultiLabelSelectionQuestionSettings: MultiLabelSelectionQuestionSettings!
+}
+
+enum QuestionType {
+  text
+  rating
+  label_selection
+  multi_label_selection
+}
+
+type TextQuestionSettings {
+  type: QuestionType!
+  use_markdown: Boolean!
+}
+
+type RatingQuestionSettingsOption {
+  value: Int!
+}
+
+type RatingQuestionSettings {
+  type: QuestionType!
+  options: [RatingQuestionSettingsOption]! @list(maxLength: 100000)
+}
+
+type LabelSelectionQuestionSettingsOption {
+  value: String! @string(maxLength: 500)
+  text: String! @string(maxLength: 500)
+  description: String @string(maxLength: 500)
+}
+
+type LabelSelectionQuestionSettings {
+  type: QuestionType!
+  options: [LabelSelectionQuestionSettingsOption]! @list(maxLength: 100000)
+  visible_options: Int
+}
+
+type MultiLabelSelectionQuestionSettings {
+  type: QuestionType!
+}

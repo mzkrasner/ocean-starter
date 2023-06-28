@@ -1,0 +1,26 @@
+type Dataset @loadModel(id: "$DATASET_ID") {
+  id: ID!
+}
+
+type Field @createModel(accountRelation: LIST, description: "Basic model representing a field for LLM fine-tuning") {
+  author: DID! @documentAccount
+  argillaID: String @string(maxLength: 200)
+  name: String! @string(minLength: 1, maxLength: 200)
+  title: String! @string(minLength: 1, maxLength: 500)
+  required: Boolean!
+  settings: TextFieldSettings!
+  argillaDataset_id: String @string(maxLength: 200)
+  inserted_at: DateTime!
+  updated_at: DateTime!
+  dataset_id: StreamID! @documentReference(model: "Dataset")
+  dataset: Dataset! @relationDocument(property: "dataset_id")
+}
+
+type TextFieldSettings {
+  type: FieldType!
+  use_markdown: Boolean!
+}
+
+enum FieldType {
+  text
+}

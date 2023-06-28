@@ -1,0 +1,21 @@
+type Workspace @loadModel(id: "$WORKSPACE_ID") {
+  id: ID!
+}
+
+type Dataset @createModel(accountRelation: LIST, description: "Basic model representing a dataset for LLM fine-tuning") {
+  author: DID! @documentAccount
+  argillaID: String @string(maxLength: 200)
+  name: String! @string(maxLength: 200)
+  guidelines: String @string(minLength: 1, maxLength: 10000)
+  status: DatasetStatus!
+  workspace_id: StreamID! @documentReference(model: "Workspace")
+  workspace: Workspace! @relationDocument(property: "workspace_id")
+  inserted_at: DateTime!
+  updated_at: DateTime!
+}
+# need to create relationships for fields, questions, and records
+
+enum DatasetStatus {
+  draft
+  ready
+}

@@ -1,5 +1,4 @@
 .next
 .env
 node_modules/*
-composedb.config.json
 admin_seed.txt

@@ -1,7 +1,9 @@
 ## Getting Started
 
-Replace your admin_seed.txt and the admin-did in the composedb.config.json file with your own.
-You will also need to create a .env file in the root of your directory and place your seed phrase there
+You will need to create an admin_seed.txt file and composedb.config.json file and generate corresponding
+credentials to place in those files. For reference, check out how to [Set Up Your Environment](https://composedb.js.org/docs/0.4.x/set-up-your-environment)
+
+You will also need to create a .env file in the root of your directory and place your seed phrase there.
 
 First, install dependencies:
 ```bash

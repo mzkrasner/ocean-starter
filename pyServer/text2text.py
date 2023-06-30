@@ -13,7 +13,7 @@ def summary():
         api_key="admin.apikey"
     )
     # text2text
-    text2text = rg.load(name="news-text-summarization")
+    text2text = rg.load(name="news-text-summarization", workspace="admin")
 
     data = {"text": [], "prediction": [], "prediction_agent": [], "annotation": [], "annotation_agent": [], "vectors": [], "id": [],
             "metadata": [], "status": [], "event_timestamp": [], "metrics": [], "search_keywords": [] }

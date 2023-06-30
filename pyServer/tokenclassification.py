@@ -14,7 +14,7 @@ def summary():
     )
     
     # tokenClassification
-    token = rg.load(name="gutenberg_spacy-ner-monitoring")
+    token = rg.load(name="gutenberg_spacy-ner-monitoring", workspace="admin")
 
     data = {"text": [], "tokens": [], "tags": [], "prediction": [], "prediction_agent": [], "annotation": [], "annotation_agent": [], "vectors": [], "id": [],
             "metadata": [], "status": [], "event_timestamp": [], "metrics": [], "search_keywords": [] }

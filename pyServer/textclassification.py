@@ -13,7 +13,7 @@ def summary():
         api_key="admin.apikey"
     )
     # textClassification
-    sentiment = rg.load(name="sst-sentiment-explainability")
+    sentiment = rg.load(name="sst-sentiment-explainability", workspace="admin")
 
     data = {"text": [], "inputs": [], "prediction": [], "prediction_agent": [], "annotation": [], "annotation_agent": [], "vectors": [], 
             "multi_label": [], "explanation": [], "id": [], "metadata": [], "status": [], "event_timestamp": [], "metrics": [], "search_keywords": [] }

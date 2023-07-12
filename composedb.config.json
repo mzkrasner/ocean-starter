@@ -1,0 +1,23 @@
+{
+  "anchor": {},
+  "http-api": {
+    "cors-allowed-origins": [".*"],
+    "admin-dids": ["<your admin did>"]
+  },
+  "ipfs": { "mode": "bundled" },
+  "logger": { "log-level": 2, "log-to-files": false },
+  "metrics": { "metrics-exporter-enabled": false, "metrics-port": 9090 },
+  "network": { "name": "testnet-clay" },
+  "node": {},
+  "state-store": { "mode": "fs", "local-directory": "~/.ceramic/statestore/" },
+  "indexing": {
+    "db": "postgres://postgres:mysecretpassword@localhost:5432/postgres",
+    "allow-queries-before-historical-sync": false,
+    "models": [
+      "kjzl6hvfrbw6c96g4wonqjl65qs2nt10ep6i1e7j8euudf6y5b58859v3yyixaj",
+      "kjzl6hvfrbw6c9bro4iy4xy895r2feyfig8le750tlyqiclxk6ut751p75urkhs",
+      "kjzl6hvfrbw6c6u7x9jq147e82npyv1x56znggr7n8lzb27s4lyaqkgxr5rsdeu"
+    ],
+    "enable-historical-sync": true
+  }
+}

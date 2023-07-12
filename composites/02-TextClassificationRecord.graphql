@@ -1,0 +1,22 @@
+type Dataset @loadModel(id: "$DATASET_ID") {
+  id: ID!
+}
+
+type TextClassificationRecord @createModel(accountRelation: LIST, description: "Basic model representing a textclassification record for LLM fine-tuning") {
+  author: DID! @documentAccount
+  annotation_id: Int!
+  annotator: Int!
+  created_at: String! @string(maxLength: 1000000)
+  filename: String! @string(maxLength: 1000000)
+  _id: Int!
+  lead_time: Float!
+  review: String! @string(maxLength: 1000000)
+  sentiment: String! @string(maxLength: 1000000)
+  stars: Int!
+  type: String! @string(maxLength: 1000000)
+  uid: Int!
+  updated_at: String! @string(maxLength: 1000000)
+  url: String! @string(maxLength: 1000000)
+  datasetId: StreamID! @documentReference(model: "Dataset")
+  dataset: Dataset! @relationDocument(property: "datasetId")
+}

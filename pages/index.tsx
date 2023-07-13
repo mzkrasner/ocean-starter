@@ -57,10 +57,8 @@ const Home: NextPage = () => {
     return item.message;
   };
 
-
   const test = async () => {
     try {
-      
       const datasets = await composeClient.executeQuery(`
       query {
         node(id: "did:pkh:eip155:1:0x514e3b94f0287caf77009039b72c321ef5f016e6") {
@@ -98,19 +96,55 @@ const Home: NextPage = () => {
         }
       }
       `);
-      console.log(datasets)
+      console.log(datasets);
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
+  const grabDataset = async () => {
+    try {
+      const dataset = await composeClient.executeQuery(`
+      query {
+        node(id: "kjzl6kcym7w8y5nw29y15r5v92wv5vkcfk4oaajjez2satfxk5b735wqdw5d46r") {
+            ... on Dataset {
+            id
+            textClassificationRecords(first: 20) {
+                edges {
+                node {
+                    id
+                    annotation_id
+                    annotator
+                    created_at
+                    filename
+                    _id
+                    lead_time
+                    review
+                    sentiment
+                    stars
+                    type
+                    uid
+                    updated_at
+                    url
+                }
+              }
+            }
+          } 
+        }
+      } 
+      `);
+      console.log(dataset);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   useEffect(() => {
     if (localStorage.getItem("did")) {
       handleLogin();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -143,7 +177,7 @@ const Home: NextPage = () => {
           )}
           <button
             onClick={() => {
-              test();
+              grabDataset();
             }}
             style={{ margin: "auto", alignContent: "center" }}
           >

@@ -1,17 +1,16 @@
 import { createContext, useContext } from "react";
 import { CeramicClient } from "@ceramicnetwork/http-client"
 import { ComposeClient } from "@composedb/client";
-
 import { definition } from "../src/__generated__/definition.js";
 import { RuntimeCompositeDefinition } from "@composedb/types";
 
 /**
  * Configure ceramic Client & create context.
  */
-const ceramic = new CeramicClient("http://localhost:7007");
+const ceramic = new CeramicClient("https://ceramic-ocean.hirenodes.io");
 
 const composeClient = new ComposeClient({
-  ceramic: "http://localhost:7007",
+  ceramic: "https://ceramic-ocean.hirenodes.io",
   // cast our definition as a RuntimeCompositeDefinition
   definition: definition as RuntimeCompositeDefinition,
 });
